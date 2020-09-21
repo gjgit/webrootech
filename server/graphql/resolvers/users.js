@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { UserInputError } = require('apollo-server');
-
+const checkAuth = require('../../util/check-auth');
 const {
   validateRegisterInput,
   validateLoginInput
@@ -43,9 +43,43 @@ module.exports = {
       } catch (err) {
         throw new Error(err);
       }
+    },
+    async getCurrentUserDetails(_, { userId }) {
+      try {
+        const user = await User.findById(userId);
+        if (user) {
+          return user;
+        } else {
+          throw new Error('user not found');
+        }
+      } catch (err) {
+        throw new Error(err);
+      }
     }
   },
   Mutation: {
+    createTransaction: async (_, { userId, amount }, context) => {
+      const { username } = checkAuth(context);
+      if (amount.trim() === '') {
+        throw new UserInputError('Empty amount', {
+          errors: {
+            amount: 'amount must not empty'
+          }
+        });
+      }
+
+      const user = await User.findById(userId);
+
+      if (user) {
+        user.transactions.unshift({
+          amount,
+          username,
+          createdAt: new Date().toISOString()
+        });
+        await user.save();
+        return user;
+      } else throw new UserInputError('User not found');
+    },
     async login(_, { username, password }) {
       const { errors, valid } = validateLoginInput(username, password);
 

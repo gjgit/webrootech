@@ -9,7 +9,9 @@ const userSchema = new Schema({
   packages: [String],
   transactions: [
     {
-      amount: String
+      amount: String,
+      username: String,
+      createdAt: String
     }
   ]
 });

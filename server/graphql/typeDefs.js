@@ -35,6 +35,8 @@ module.exports = gql`
   type Transaction {
     id: ID!
     amount: String!
+    createdAt: String!
+    username: String!
   }
   input RegisterInput {
     username: String!
@@ -47,6 +49,7 @@ module.exports = gql`
   type Query {
     getPosts: [Post]
     getPost(postId: ID!): Post
+    getCurrentUserDetails(userId: ID!): User
     getCurrentUserDetailsForUpdation(username: String!): User
     getAllUsers: [User]
   }
@@ -56,9 +59,9 @@ module.exports = gql`
     createPost(body: String!): Post!
     deletePost(postId: ID!): String!
     createComment(postId: String!, body: String!): Post!
+    createTransaction(userId: String!, amount: String!): User!
     deleteComment(postId: ID!, commentId: ID!): Post!
     likePost(postId: ID!): Post!
-    getCurrentUserDetailsForUpdationWhenUpdateCicked(username: String!): User
   }
   type Subscription {
     newPost: Post!
