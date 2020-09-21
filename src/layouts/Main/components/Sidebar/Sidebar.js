@@ -51,42 +51,44 @@ const Sidebar = props => {
       icon: <DashboardIcon />
     },
     {
-      title: 'Users',
-      href: '/users',
-      icon: <PeopleIcon />
-    },
-    {
-      title: 'Products',
-      href: '/products',
-      icon: <ShoppingBasketIcon />
-    },
-    {
-      title: 'Typography',
-      href: '/typography',
-      icon: <TextFieldsIcon />
-    },
-    {
-      title: 'Icons',
-      href: '/icons',
-      icon: <ImageIcon />
-    },
-    {
       title: 'Account',
       href: '/account',
       icon: <AccountBoxIcon />
-    },
-    {
-      title: 'Settings',
-      href: '/settings',
-      icon: <SettingsIcon />
     }
   ];
-  if (user) {
-    pages.push({
-      title: 'Authentication',
-      href: '/sign-in',
-      icon: <LockOpenIcon />
-    });
+  if (1 == 2) {
+    pages.push(
+      {
+        title: 'Authentication',
+        href: '/sign-in',
+        icon: <LockOpenIcon />
+      },
+      {
+        title: 'Settings',
+        href: '/settings',
+        icon: <SettingsIcon />
+      },
+      {
+        title: 'Typography',
+        href: '/typography',
+        icon: <TextFieldsIcon />
+      },
+      {
+        title: 'Icons',
+        href: '/icons',
+        icon: <ImageIcon />
+      },
+      {
+        title: 'Products',
+        href: '/products',
+        icon: <ShoppingBasketIcon />
+      },
+      {
+        title: 'Users',
+        href: '/users',
+        icon: <PeopleIcon />
+      }
+    );
   }
   return (
     <Drawer

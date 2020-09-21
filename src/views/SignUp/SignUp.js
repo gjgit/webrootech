@@ -336,7 +336,7 @@ const SignUp = props => {
                     Sign in
                   </Link>
                 </Typography>
-                <pre>{JSON.stringify(values, 0, 2)}</pre>
+                {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
               </form>
             )}
           />

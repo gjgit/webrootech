@@ -38,7 +38,7 @@ const Routes = () => {
       ) : user && user.role === 'Admin' ? (
         <Route component={SignUpView} exact path="/sign-up" />
       ) : (
-        <Route component={SignUpView} exact path="/sign-up" />
+        <RouteWithLayout component={SignUpView} exact path="/sign-up" />
       )}
       <RouteWithLayout component={SignInView} exact path="/sign-in" />
       <Route component={NotFoundView} exact path="/not-found" />
